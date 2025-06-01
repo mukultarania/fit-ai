@@ -38,7 +38,7 @@ The response should be a valid JSON object with the following structure:
         {
           "name": "Exercise Name",
           "sets": 3,
-          "reps": "12",
+          "reps": "12",w
           "restTime": 60,
           "notes": "Optional form tips"
         }
@@ -58,21 +58,22 @@ The response should be a valid JSON object with the following structure:
 }`;
 
     const completion = await openai.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content: "You are a professional fitness trainer creating personalized workout plans. Provide detailed, safe, and effective workout routines based on the specified training split and be careful with user age and user concerns. Always respond with valid JSON that matches the specified structure."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      model: "llama-3.3-70b-versatile",
-      response_format: { type: "json_object" },
-      temperature: 0.7,
-      max_tokens: 2000,
-    });
+		messages: [
+			{
+				role: "system",
+				content:
+					"You are a professional fitness trainer creating personalized workout plans. Provide detailed, safe, and effective workout routines based on the specified training split and be careful with user age and user concerns. Always respond with valid JSON that matches the specified structure.",
+			},
+			{
+				role: "user",
+				content: prompt,
+			},
+		],
+		model: "deepseek-r1-distill-llama-70b",
+		response_format: { type: "json_object" },
+		temperature: 0.7,
+		max_tokens: 32768,
+	});
 
     const workoutPlan = completion.choices[0]?.message?.content;
     
@@ -83,7 +84,8 @@ The response should be a valid JSON object with the following structure:
       );
     }
 
-    try {
+      try {
+        console.log('Raw workout plan response:', workoutPlan);
       const parsedPlan = JSON.parse(workoutPlan);
       
       if (!parsedPlan.routines || !Array.isArray(parsedPlan.routines)) {
