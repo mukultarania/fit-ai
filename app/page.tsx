@@ -10,6 +10,7 @@ import { ResearchSection } from "@/components/research-section";
 import { WorkoutSplits } from "@/components/workout-splits";
 import DietPlan from "./diet/page";
 import Donate from "./donate/page";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
 	const [currentPage, setCurrentPage] = useState<
@@ -39,7 +40,8 @@ export default function Home() {
 					<WorkoutSplits setCurrentPage={setCurrentPage} />
 				)}
 				{currentPage === "donate" && <Donate/>}
-				{currentPage === "diet" && <DietPlan />}
+                {currentPage === "diet" && <DietPlan />}
+                <Analytics />
 			</main>
 		</div>
 	);
