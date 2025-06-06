@@ -37,8 +37,8 @@ export async function POST(req: Request) {
 		} = body;
 
 		const prompt = `Create a detailed diet plan for someone with the following characteristics:
-- Country: ${weight}kg
-- State: ${height}cm
+- Country: ${country}
+- State: ${state}
 - Weight: ${weight}kg
 - Height: ${height}cm
 - Age: ${age}
