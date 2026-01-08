@@ -69,7 +69,7 @@ The response should be a valid JSON object with the following structure:
 				content: prompt,
 			},
 		],
-		model: "deepseek-r1-distill-llama-70b",
+		model: process.env.OPENAI_MODEL || "",
 		response_format: { type: "json_object" },
 		temperature: 0.7,
 		max_tokens: 32768,

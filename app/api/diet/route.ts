@@ -103,7 +103,7 @@ The response should be a valid JSON object with the following structure:
 					content: prompt,
 				},
 			],
-			model: "llama-3.3-70b-versatile",
+			model: process.env.OPENAI_MODEL || "",
 			response_format: { type: "json_object" },
 			temperature: 0.7,
 			max_tokens: 32768,
